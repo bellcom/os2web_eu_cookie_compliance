@@ -83,7 +83,7 @@ function os2web_eu_cookie_compliance_node_update($node) {
   // Clearing additional cache for page.
   global $base_root;
   $cache_bin = new OS2WebEuCookieComplianceDrupalDatabaseCache('cache_page');
-  $cache_bin->clear('no-cookies-' . $base_root . request_uri());
+  $cache_bin->clear('no-cookies-' . $base_root . url('node/' . $node->nid));
 }
 
 /**
