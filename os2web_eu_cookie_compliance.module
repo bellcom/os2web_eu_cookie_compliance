@@ -73,6 +73,18 @@ function os2web_eu_cookie_compliance_menu() {
   );
   return $items;
 }
+/**
+ * Implements hook_node_update().
+ */
+function os2web_eu_cookie_compliance_node_update($node) {
+  if (variable_get('cache_class_cache_page') != 'OS2WebEuCookieComplianceDrupalDatabaseCache') {
+    return;
+  }
+  // Clearing additional cache for page.
+  global $base_root;
+  $cache_bin = new OS2WebEuCookieComplianceDrupalDatabaseCache('cache_page');
+  $cache_bin->clear('no-cookies-' . $base_root . request_uri());
+}
 
 /**
  * Implements hook_form_FORM_ID_alter().
